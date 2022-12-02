@@ -1,19 +1,38 @@
 import React from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { ReactPhotoSphereViewer } from "react-photo-sphere-viewer";
+import { ReactPhotoSphereViewer, GalleryPlugin } from "react-photo-sphere-viewer";
 
 function PhotoSphere({ path }) {
   const photoSphereRef = React.useRef();
   const resolvedPath = useBaseUrl(path);
 
-  const handleClick = () => {
-    photoSphereRef.current.animate({
-      latitude: 0,
-      longitude: 0,
-      zoom: 55,
-      speed: "10rpm",
-    });
-  };
+  const plugins = [
+    [GalleryPlugin, {
+      items: [
+        {
+          id: 'pano-1',
+          name: 'Panorama 1',
+          panorama: 'path/to/pano-1.jpg',
+          thumbnail: 'path/to/pano-1-thumb.jpg',
+        },
+        {
+          id: 'pano-2',
+          name: 'Panorama 2',
+          panorama: 'path/to/pano-2.jpg',
+          thumbnail: 'path/to/pano-2-thumb.jpg',
+        },
+      ],
+    }],
+  ]
+
+  // const handleClick = () => {
+  //   photoSphereRef.current.animate({
+  //     latitude: 0,
+  //     longitude: 0,
+  //     zoom: 55,
+  //     speed: "10rpm",
+  //   });
+  // };
 
   return (
     <div>
@@ -22,7 +41,8 @@ function PhotoSphere({ path }) {
         src={resolvedPath}
         height={"60vh"}
         width={"100%"}
-        onClick={handleClick}
+        // onClick={handleClick}
+      plugins={plugins}
       ></ReactPhotoSphereViewer>
     </div>
   );
