@@ -1,28 +1,13 @@
 import React from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { ReactPhotoSphereViewer, GalleryPlugin } from "react-photo-sphere-viewer";
+import { ReactPhotoSphereViewer, GyroscopePlugin } from "react-photo-sphere-viewer";
 
 function PhotoSphere({ path }) {
   const photoSphereRef = React.useRef();
   const resolvedPath = useBaseUrl(path);
 
   const plugins = [
-    [GalleryPlugin, {
-      items: [
-        {
-          id: 'pano-1',
-          name: 'Panorama 1',
-          panorama: 'path/to/pano-1.jpg',
-          thumbnail: 'path/to/pano-1-thumb.jpg',
-        },
-        {
-          id: 'pano-2',
-          name: 'Panorama 2',
-          panorama: 'path/to/pano-2.jpg',
-          thumbnail: 'path/to/pano-2-thumb.jpg',
-        },
-      ],
-    }],
+    GyroscopePlugin,
   ]
 
   // const handleClick = () => {
